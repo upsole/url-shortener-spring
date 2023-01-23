@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 class UrlController {
@@ -23,11 +25,17 @@ class UrlController {
 		return repository.findAll();
 	}
 
-	// TODO BASE URL
+	@RequestMapping("/short")
+	ModelAndView form() {
+		ModelAndView view = new ModelAndView();
+		view.setViewName("index.html");
+		return view;
+	}
+
 	@ResponseBody
 	@PostMapping("/short")
 	String newUrl(@RequestBody Url newUrl) {
-		return "/short/" + repository.save(newUrl).getShortUrl();
+		return "http://localhost:8080/short/" + repository.save(newUrl).getShortUrl();
 	}
 
 	@GetMapping("/short/{url}")

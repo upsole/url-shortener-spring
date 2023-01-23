@@ -11,7 +11,6 @@ class randomString {
     for (int i = 0; i < length; i++) {
       text[i] = characters.charAt(rng.nextInt(characters.length()));
     }
-	System.out.println("RANDOM STRING CALLED");
     return new String(text);
   }
 }

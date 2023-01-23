@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<body>
+	<h2>URL SHORTENER</h2>
+	<input type="" id="input" />
+	<button onClick="request()">SEND TEST</button>
+	<h3 id="response-box"></h3>
+</body>
+<script type="text/javascript">
+	function setResponseText(s) {
+		let resbox = document.getElementById("response-box");
+		resbox.innerText = "Your URL: " + s;
+	}
+	function request() {
+		let value = document.getElementsByTagName("input").item(0).value;
+		if (value) {
+			let http = new XMLHttpRequest();
+			let url = "http://localhost:8080/short";
+			http.open("POST", url, true);
+			http.setRequestHeader("Content-type", "application/json");
+			let payload = JSON.stringify({
+				original: value,
+			});
+			http.onreadystatechange = function () {
+				if (http.readyState == 4 && http.status == 200) {
+					setResponseText(http.responseText);
+				}
+			};
+			http.send(payload);
+			return;
+		}
+		console.log("NOPE");
+		return;
+	}
+</script>
+
+</html>

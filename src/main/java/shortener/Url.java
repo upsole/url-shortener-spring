@@ -33,7 +33,6 @@ class Url {
 	}
 
 	public void setShortUrl() {
-		System.out.println("setter called");
 		this.shortUrl = randomString.generateString(5);
 	}
 	@Override
