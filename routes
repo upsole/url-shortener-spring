@@ -1,0 +1,14 @@
+Models
+	URL
+		id
+		original
+		hash
+Routes
+	Get
+		/urls/{id}
+			handle not found
+			send redirect response
+	Post
+		/urls/ | payload
+			create hash from string
+			insert URL on db
